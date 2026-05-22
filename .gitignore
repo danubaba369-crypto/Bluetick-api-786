@@ -28,3 +28,12 @@ local-services/
 
 # Ignore yarn/npm logs globally
 **/*.log
+
+# Ignore changelogs and documentations
+wapi-documentation/
+wapi-frontend-change-log/
+wapi-api-changed-files/
+wapi-admin-changelog-files/
+create_transparent_logos.py
+process_logo.py
+
