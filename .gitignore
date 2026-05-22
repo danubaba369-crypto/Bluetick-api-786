@@ -1,0 +1,30 @@
+# Root level gitignore for wapi-bundle monorepo
+
+# Ignore all zip and archive files
+*.zip
+*.tar.gz
+*.tgz
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore local services folder
+local-services/
+
+# Ignore node_modules globally
+**/node_modules/
+
+# Ignore env files globally
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# Ignore next build files globally
+**/.next/
+**/out/
+
+# Ignore yarn/npm logs globally
+**/*.log
