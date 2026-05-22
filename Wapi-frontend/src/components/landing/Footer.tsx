@@ -14,6 +14,12 @@ import { FOOTEROPTIONS } from "@/src/data";
 import { Button } from "@/src/elements/ui/button";
 import { useTranslation } from "react-i18next";
 
+const resolveUrl = (url?: string) => {
+  if (!url) return null;
+  const storageUrl = process.env.NEXT_PUBLIC_STORAGE_URL || "";
+  return url.startsWith("http") ? url : `${storageUrl}${url}`;
+};
+
 const Footer: React.FC<FooterProps> = ({ data }) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -27,6 +33,8 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
   const socialLinks = data.social_links && data.social_links[0] ? data.social_links[0] : null;
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
   const { app_name, logo_light_url } = useAppSelector((state) => state.setting);
+
+  const logoSrc = resolveUrl(logo_light_url) || Logo1;
 
   const scrollToSection = (id: string) => {
     const mapping: Record<string, string> = {
@@ -62,7 +70,7 @@ const Footer: React.FC<FooterProps> = ({ data }) => {
       <div className="flex flex-col md:flex-row justify-between items-center gap-[calc(16px+16*((100vw-320px)/1600))] pb-8 border-b border-white/10">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
-            <Images src={logo_light_url || Logo1} alt={`${app_name || t("app_name")} logo`} className="h-11 object-contain" width={150} height={44} />
+            <Images src={logoSrc} alt={`${app_name || t("app_name")} logo`} className="h-11 object-contain" width={150} height={44} />
           </Link>
         </div>
 

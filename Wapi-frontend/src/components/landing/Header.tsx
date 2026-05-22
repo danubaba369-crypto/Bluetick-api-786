@@ -57,6 +57,12 @@ const mobileProductItems = [
   },
 ];
 
+const resolveUrl = (url?: string) => {
+  if (!url) return null;
+  const storageUrl = process.env.NEXT_PUBLIC_STORAGE_URL || "";
+  return url.startsWith("http") ? url : `${storageUrl}${url}`;
+};
+
 const Header = ({ isColor = false }: { isColor?: boolean }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -123,6 +129,8 @@ const Header = ({ isColor = false }: { isColor?: boolean }) => {
     }
   };
 
+  const logoSrc = resolveUrl(logo_light_url) || Logo1;
+
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       <div
@@ -135,7 +143,7 @@ const Header = ({ isColor = false }: { isColor?: boolean }) => {
         `}
       >
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <Images src={logo_light_url || Logo1} alt={`${app_name || t("app_name")} logo`} width={150} height={44} unoptimized className="h-11 object-contain" />
+          <Images src={logoSrc} alt={`${app_name || t("app_name")} logo`} width={150} height={44} unoptimized className="h-11 object-contain" />
         </Link>
 
         <nav className="hidden min-[1100px]:flex items-center gap-8 flex-1 justify-center">
@@ -214,7 +222,7 @@ const Header = ({ isColor = false }: { isColor?: boolean }) => {
           {/* Drawer header */}
           <div className="flex items-center justify-between px-5 pt-5 pb-6 border-b border-white/10">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
-              <Images src={logo_light_url || Logo1} alt={`${app_name || t("app_name")} logo`} width={130} height={38} unoptimized className="h-9.5 object-contain" />
+              <Images src={logoSrc} alt={`${app_name || t("app_name")} logo`} width={130} height={38} unoptimized className="h-9.5 object-contain" />
             </Link>
             <Button aria-label="Close menu" className="text-white! p-2! bg-[unset]! hover:bg-white-opacity-10! rounded-lg! transition-colors" onClick={() => setIsMenuOpen(false)}>
               <X size={22} />
