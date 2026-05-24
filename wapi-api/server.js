@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
       module.default.initializeAllConnections();
     }).catch(err => console.error('Error importing unifiedWhatsAppService for initialization:', err));
 
-    httpServer.listen(PORT, () => {
+    httpServer.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running at http://localhost:${PORT}`);
       console.log('WebSocket (Socket.IO) enabled at path /socket.io');
 
