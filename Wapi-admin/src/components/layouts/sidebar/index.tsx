@@ -373,13 +373,9 @@ export default function Sidebar() {
                       <div className="h-7.5 w-28 bg-gray-200 dark:bg-sidebar-hover-green/40 animate-pulse rounded-md" />
                     </div>
                   ) : (
-                    <CustomImage
-                      src={sidebarLogo}
-                      alt="Logo"
-                      width={140}
-                      height={44}
-                      className="object-contain w-full h-11"
-                    />
+                    <span className="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500 dark:from-emerald-400 dark:to-teal-300 drop-shadow-sm uppercase text-center w-full block">
+                      BLUE TICK API
+                    </span>
                   )}
                 </div>
 
