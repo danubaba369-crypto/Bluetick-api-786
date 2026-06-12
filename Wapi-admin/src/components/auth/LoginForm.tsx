@@ -18,11 +18,14 @@ import { ROUTES } from "../../constants";
 import { DynamicLogo } from "./common/DynamicLogo";
 import { t } from "i18next";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
+const API_URL = process.env.NEXT_PUBLIC_STORAGE_URL ?? "";
 
 const resolveUrl = (url?: string): string => {
   if (!url) return "";
-  return url.startsWith("http") ? url : `${API_URL}${url}`;
+  if (url.startsWith("http")) return url;
+  const baseUrl = API_URL.endsWith("/") ? API_URL.slice(0, -1) : API_URL;
+  const path = url.startsWith("/") ? url : `/${url}`;
+  return `${baseUrl}${path}`;
 };
 
 const DEFAULT_FAVICON = "/assets/logos/sidebarLogo.png";
